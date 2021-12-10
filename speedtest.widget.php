@@ -54,6 +54,10 @@ if ($_REQUEST['ajax']) {
 		<td>Host</td>
 		<td colspan="2" id="speedtest-host">N/A</td>
 	</tr>
+    <tr>
+        <td>Distance</td>
+        <td colspan="2" id="speedtest-distance">N/A</td>
+    </tr>
 	<tr>
 		<td colspan="3" id="speedtest-ts" style="font-size: 0.8em;">&nbsp;</td>
 	</tr>
@@ -68,7 +72,8 @@ function update_result(results) {
     	$("#speedtest-download").html((results.download / 1000000).toFixed(2) + "<small> Mbps</small>");
     	$("#speedtest-upload").html((results.upload / 1000000).toFixed(2) + "<small> Mbps</small>");
     	$("#speedtest-isp").html(results.client.isp);
-    	$("#speedtest-host").html(results.server.name);
+    	$("#speedtest-host").html(results.server.sponsor + ' (' + results.server.name + ')');
+        $("#speedtest-distance").html( results.server.d.toFixed(2) + ' km - ' + (results.server.d * 1000 * 0.000621371192).toFixed(2) + ' miles');
     } else {
     	$("#speedtest-ts").html("Speedtest failed");
     	$("#speedtest-ping").html("N/A");
